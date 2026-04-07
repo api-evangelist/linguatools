@@ -6,8 +6,7 @@ type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags:
-  - API
+tags: []
 created: '2025-02-08'
 modified: '2026-03-16'
 url: >-
@@ -19,8 +18,7 @@ apis:
     description: >-
       The dictionary contains more than 2 million English collocations.
     humanURL: ' https://linguatools.org/language-apis/linguatools-collocation-api/'
-    tags:
-      - API
+    tags: []
     properties:
       - type: Documentation
         url: ' https://linguatools.org/language-apis/linguatools-collocation-api/'
