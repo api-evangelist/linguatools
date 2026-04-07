@@ -1,6 +1,7 @@
 aid: linguatools
-name: linguatools
-description: 'The dictionary contains more than 2 million English collocations. '
+name: Linguatools
+description: >-
+  The dictionary contains more than 2 million English collocations.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -14,8 +15,9 @@ url: >-
 specificationVersion: '0.19'
 apis:
   - aid: linguatools:linguatools
-    name: linguatools
-    description: 'The dictionary contains more than 2 million English collocations. '
+    name: Linguatools
+    description: >-
+      The dictionary contains more than 2 million English collocations.
     humanURL: ' https://linguatools.org/language-apis/linguatools-collocation-api/'
     tags:
       - API
