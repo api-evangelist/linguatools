@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/linguatools/refs/heads/main/json-schema/linguatools-collocation-schema.json",
+  "title": "Linguatools Collocation",
+  "description": "A single collocation result returned by the Linguatools Collocations API.",
+  "type": "object",
+  "properties": {
+    "basis": {
+      "type": "string",
+      "description": "The base query word."
+    },
+    "collocate": {
+      "type": "string",
+      "description": "The collocated word or phrase."
+    },
+    "relation": {
+      "type": "string",
+      "description": "Syntactic relation between the basis and the collocate, such as V:obj:N or N:mod:Adj."
+    },
+    "significance": {
+      "type": "number",
+      "description": "Statistical significance score of the collocation."
+    },
+    "examples": {
+      "type": "array",
+      "description": "Up to three example sentences for the collocation.",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 3
+    }
+  },
+  "required": ["basis", "collocate", "relation"]
+}

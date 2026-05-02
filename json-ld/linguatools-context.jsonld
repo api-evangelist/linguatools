@@ -1,0 +1,20 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "linguatools": "https://linguatools.org/ns#",
+    "Collocation": "linguatools:Collocation",
+    "basis": "linguatools:basis",
+    "collocate": "linguatools:collocate",
+    "relation": "linguatools:relation",
+    "significance": {
+      "@id": "linguatools:significance",
+      "@type": "xsd:decimal"
+    },
+    "examples": {
+      "@id": "linguatools:examples",
+      "@container": "@list"
+    },
+    "language": "linguatools:language",
+    "partOfSpeech": "linguatools:partOfSpeech"
+  }
+}
