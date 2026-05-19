@@ -1,43 +1,46 @@
 naftiko: 1.0.0-alpha2
 info:
-  label: Linguatools Collocations API
-  description: The Linguatools Collocations API provides access to a dictionary of more than 2 million English collocations.
-    It returns collocations for a query word filtered by syntactic relation, part of speech, and a minimum significance score,
-    with up to three example sentences per collocation. The API is distributed via RapidAPI.
+  label: Linguatools Collocations API — Collocations
+  description: 'Linguatools Collocations API — Collocations. 1 operations. Lead operation: Get collocations for a word. Self-contained
+    Naftiko capability covering one Linguatools business surface.'
   tags:
   - Linguatools
-  - API
-  created: '2026-05-06'
-  modified: '2026-05-06'
+  - Collocations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LINGUATOOLS_API_KEY: LINGUATOOLS_API_KEY
 capability:
   consumes:
   - type: http
-    namespace: linguatools
+    namespace: collocations-collocations
     baseUri: https://linguatools-collocations.p.rapidapi.com
-    description: Linguatools Collocations API HTTP API.
-    authentication:
-      type: apikey
-      in: header
-      name: X-RapidAPI-Key
-      value: '{{LINGUATOOLS_TOKEN}}'
+    description: Linguatools Collocations API — Collocations business capability. Self-contained, no shared references.
     resources:
-    - name: resource
+    - name: root
       path: /
       operations:
       - name: getcollocations
         method: GET
         description: Get collocations for a word
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
         inputParameters:
         - name: query
           in: query
           type: string
-          required: true
           description: The query word (case-insensitive).
+          required: true
         - name: lang
           in: query
           type: string
-          required: true
           description: ISO 639-1 language code. Currently only `en` is supported.
+          required: true
         - name: relation
           in: query
           type: string
@@ -55,77 +58,66 @@ capability:
         - name: X-RapidAPI-Key
           in: header
           type: string
-          required: true
           description: Your RapidAPI subscription key.
+          required: true
         - name: X-RapidAPI-Host
           in: header
           type: string
-          required: true
           description: Must be set to `linguatools-collocations.p.rapidapi.com`.
-        outputRawFormat: json
-        outputParameters:
-        - name: result
-          type: object
-          value: $.
+          required: true
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.LINGUATOOLS_API_KEY}}'
+      placement: header
   exposes:
   - type: rest
+    namespace: collocations-collocations-rest
     port: 8080
-    namespace: linguatools-rest
-    description: REST adapter for Linguatools Collocations API.
+    description: REST adapter for Linguatools Collocations API — Collocations. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
     resources:
-    - path: /
-      name: getcollocations
+    - path: /v1
+      name: root
+      description: REST surface for root.
       operations:
       - method: GET
         name: getcollocations
         description: Get collocations for a word
-        call: linguatools.getcollocations
+        call: collocations-collocations.getcollocations
+        with:
+          query: rest.query
+          lang: rest.lang
+          relation: rest.relation
+          min_sig: rest.min_sig
+          pos: rest.pos
+          X-RapidAPI-Key: rest.X-RapidAPI-Key
+          X-RapidAPI-Host: rest.X-RapidAPI-Host
         outputParameters:
         - type: object
           mapping: $.
   - type: mcp
+    namespace: collocations-collocations-mcp
     port: 9090
-    namespace: linguatools-mcp
     transport: http
-    description: MCP adapter for Linguatools Collocations API for AI agent use.
+    description: MCP adapter for Linguatools Collocations API — Collocations. One tool per consumed operation, routed inline
+      through this capability's consumes block.
     tools:
-    - name: getcollocations
+    - name: get-collocations-word
       description: Get collocations for a word
       hints:
         readOnly: true
         destructive: false
         idempotent: true
-      call: linguatools.getcollocations
+      call: collocations-collocations.getcollocations
       with:
         query: tools.query
         lang: tools.lang
         relation: tools.relation
         min_sig: tools.min_sig
         pos: tools.pos
-      inputParameters:
-      - name: query
-        type: string
-        description: The query word (case-insensitive).
-        required: true
-      - name: lang
-        type: string
-        description: ISO 639-1 language code. Currently only `en` is supported.
-        required: true
-      - name: relation
-        type: string
-        description: 'Syntactic relation type (case-sensitive). Examples include `V:obj:N` (verb-object), `N:mod:Adj` (noun-adjective
-          modifier), `Adj:mod:N`, `V:subj:N`, `N:prep:N`, '
-      - name: min_sig
-        type: integer
-        description: Minimum significance threshold. Values must be 100 or greater.
-      - name: pos
-        type: string
-        description: Part of speech filter (v2 only). One of `V` (verb), `Vinf` (infinitive verb), `N` (noun), `Adj` (adjective),
-          `Adv` (adverb).
+        X-RapidAPI-Key: tools.X-RapidAPI-Key
+        X-RapidAPI-Host: tools.X-RapidAPI-Host
       outputParameters:
       - type: object
         mapping: $.
-binds:
-- namespace: env
-  keys:
-    LINGUATOOLS_TOKEN: LINGUATOOLS_TOKEN
