@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Linguatools Collocations API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Collocations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get collocations for a word",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://linguatools-collocations.p.rapidapi.com/",
+            "headers": [
+              {
+                "name": "X-RapidAPI-Key",
+                "value": ""
+              },
+              {
+                "name": "X-RapidAPI-Host",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "query",
+                "value": "change",
+                "type": "query",
+                "description": "The query word (case-insensitive)."
+              },
+              {
+                "name": "lang",
+                "value": "en",
+                "type": "query",
+                "description": "ISO 639-1 language code. Currently only `en` is supported."
+              },
+              {
+                "name": "relation",
+                "value": "",
+                "type": "query",
+                "description": "Syntactic relation type (case-sensitive). Examples include `V:obj:N` (verb-object), `N:mod:Adj` (noun-adjective modifier), `Adj:mod:N`, `V:subj:N`, `N:prep:N`, `V:adv:Adv`."
+              },
+              {
+                "name": "min_sig",
+                "value": "",
+                "type": "query",
+                "description": "Minimum significance threshold. Values must be 100 or greater."
+              },
+              {
+                "name": "pos",
+                "value": "",
+                "type": "query",
+                "description": "Part of speech filter (v2 only). One of `V` (verb), `Vinf` (infinitive verb), `N` (noun), `Adj` (adjective), `Adv` (adverb)."
+              }
+            ]
+          },
+          "docs": "Returns collocations for the supplied query word. Supports filtering by syntactic relation, minimum significance score, and (in v2) part of speech. Results include the collocation text, relation type, significance score, and up to three example sentences."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
