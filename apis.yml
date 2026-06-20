@@ -7,7 +7,7 @@ description: >-
 type: Index
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Collocations
   - Dictionary
@@ -26,7 +26,7 @@ apis:
       The Linguatools Collocations API returns collocations for an English query word, filtered by syntactic relation,
       minimum significance, and part of speech. Each result includes the collocate, relation type, significance score,
       and up to three example sentences. Distributed via RapidAPI.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://linguatools.org/language-apis/linguatools-collocation-api/
     baseURL: https://linguatools-collocations.p.rapidapi.com
     tags:
