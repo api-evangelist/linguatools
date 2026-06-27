@@ -37,7 +37,7 @@ apis:
     properties:
       - type: Documentation
         url: https://linguatools.org/language-apis/linguatools-collocation-api/
-      - type: SignUp
+      - type: Signup
         url: https://rapidapi.com/linguatools/api/linguatools-collocations
       - type: OpenAPI
         url: openapi/linguatools-collocations-openapi.yml
@@ -54,7 +54,7 @@ common:
     url: https://linguatools.org
   - type: Documentation
     url: https://linguatools.org/language-apis/
-  - type: SignUp
+  - type: Signup
     url: https://rapidapi.com/linguatools
 maintainers:
   - FN: Kin Lane
