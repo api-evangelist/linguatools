@@ -46,6 +46,10 @@ apis:
       - type: JSONLD
         url: json-ld/linguatools-context.jsonld
 common:
+  - type: DomainSecurity
+    url: security/linguatools-domain-security.yml
+  - type: Authentication
+    url: authentication/linguatools-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/linguatools
   - type: LinkedIn
