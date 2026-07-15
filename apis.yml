@@ -46,6 +46,8 @@ apis:
       - type: JSONLD
         url: json-ld/linguatools-context.jsonld
 common:
+  - type: AgenticAccess
+    url: agentic-access/linguatools-agentic-access.yml
   - type: DomainSecurity
     url: security/linguatools-domain-security.yml
   - type: Authentication
