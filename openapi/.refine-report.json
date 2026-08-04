@@ -1,0 +1,14 @@
+{
+  "provider": "linguatools",
+  "sources": [
+    "linguatools-collocations-api-openapi.yml"
+  ],
+  "outputs": [
+    "linguatools-collocations-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,142 @@
+openapi: 3.0.3
+info:
+  title: Linguatools Collocations API
+  description: >-
+    The Linguatools Collocations API provides access to a dictionary of more
+    than 2 million English collocations. It returns collocations for a query
+    word filtered by syntactic relation, part of speech, and a minimum
+    significance score, with up to three example sentences per collocation.
+    The API is distributed via RapidAPI.
+  version: "2.0"
+  contact:
+    name: Linguatools
+    url: https://linguatools.org/language-apis/linguatools-collocation-api/
+  license:
+    name: Commercial
+    url: https://rapidapi.com/linguatools/api/linguatools-collocations
+servers:
+  - url: https://linguatools-collocations.p.rapidapi.com
+    description: RapidAPI production endpoint
+paths:
+  /:
+    get:
+      summary: Get collocations for a word
+      description: >-
+        Returns collocations for the supplied query word. Supports filtering by
+        syntactic relation, minimum significance score, and (in v2) part of
+        speech. Results include the collocation text, relation type,
+        significance score, and up to three example sentences.
+      operationId: getCollocations
+      tags:
+        - Collocations
+      parameters:
+        - name: query
+          in: query
+          required: true
+          description: The query word (case-insensitive).
+          schema:
+            type: string
+          example: change
+        - name: lang
+          in: query
+          required: true
+          description: ISO 639-1 language code. Currently only `en` is supported.
+          schema:
+            type: string
+            enum:
+              - en
+          example: en
+        - name: relation
+          in: query
+          required: false
+          description: >-
+            Syntactic relation type (case-sensitive). Examples include
+            `V:obj:N` (verb-object), `N:mod:Adj` (noun-adjective modifier),
+            `Adj:mod:N`, `V:subj:N`, `N:prep:N`, `V:adv:Adv`.
+          schema:
+            type: string
+        - name: min_sig
+          in: query
+          required: false
+          description: Minimum significance threshold. Values must be 100 or greater.
+          schema:
+            type: integer
+            minimum: 100
+        - name: pos
+          in: query
+          required: false
+          description: >-
+            Part of speech filter (v2 only). One of `V` (verb), `Vinf`
+            (infinitive verb), `N` (noun), `Adj` (adjective), `Adv` (adverb).
+          schema:
+            type: string
+            enum:
+              - V
+              - Vinf
+              - N
+              - Adj
+              - Adv
+        - name: X-RapidAPI-Key
+          in: header
+          required: true
+          description: Your RapidAPI subscription key.
+          schema:
+            type: string
+        - name: X-RapidAPI-Host
+          in: header
+          required: true
+          description: Must be set to `linguatools-collocations.p.rapidapi.com`.
+          schema:
+            type: string
+            default: linguatools-collocations.p.rapidapi.com
+      responses:
+        "200":
+          description: A JSON array of collocations matching the query.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Collocation"
+        "400":
+          description: Bad request, missing or invalid parameters.
+        "401":
+          description: Missing or invalid RapidAPI key.
+        "429":
+          description: Rate limit exceeded for the current plan.
+components:
+  securitySchemes:
+    RapidAPIKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+  schemas:
+    Collocation:
+      type: object
+      properties:
+        basis:
+          type: string
+          description: The base word that was queried.
+          example: change
+        collocate:
+          type: string
+          description: The collocated word or phrase.
+          example: dramatic
+        relation:
+          type: string
+          description: Syntactic relation type linking the basis and the collocate.
+          example: N:mod:Adj
+        significance:
+          type: number
+          description: Statistical significance score for the collocation.
+          example: 1825.4
+        examples:
+          type: array
+          description: Up to three example sentences illustrating the collocation.
+          items:
+            type: string
+security:
+  - RapidAPIKey: []
+tags:
+  - name: Collocations
+    description: Operations for retrieving English collocations.
