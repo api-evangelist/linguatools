@@ -1,0 +1,419 @@
+{
+  "item": [
+    {
+      "id": "1caa9e21-c901-4b83-a99f-a3a7879bf464",
+      "name": "Collocations",
+      "description": {
+        "content": "Operations for retrieving English collocations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "55a3cf49-cc68-47c5-84f6-bd8c3ebe46c5",
+          "name": "Get collocations for a word",
+          "request": {
+            "name": "Get collocations for a word",
+            "description": {
+              "content": "Returns collocations for the supplied query word. Supports filtering by syntactic relation, minimum significance score, and (in v2) part of speech. Results include the collocation text, relation type, significance score, and up to three example sentences.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) The query word (case-insensitive)."
+                },
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "<string>",
+                  "description": "(Required) ISO 639-1 language code. Currently only `en` is supported."
+                },
+                {
+                  "disabled": false,
+                  "key": "relation",
+                  "value": "<string>",
+                  "description": "Syntactic relation type (case-sensitive). Examples include `V:obj:N` (verb-object), `N:mod:Adj` (noun-adjective modifier), `Adj:mod:N`, `V:subj:N`, `N:prep:N`, `V:adv:Adv`."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_sig",
+                  "value": "<integer>",
+                  "description": "Minimum significance threshold. Values must be 100 or greater."
+                },
+                {
+                  "disabled": false,
+                  "key": "pos",
+                  "value": "<string>",
+                  "description": "Part of speech filter (v2 only). One of `V` (verb), `Vinf` (infinitive verb), `N` (noun), `Adj` (adjective), `Adv` (adverb)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your RapidAPI subscription key.",
+                "key": "X-RapidAPI-Key",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) Must be set to `linguatools-collocations.p.rapidapi.com`.",
+                "key": "X-RapidAPI-Host",
+                "value": "linguatools-collocations.p.rapidapi.com"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "41b11aa0-6169-4d3c-8b85-c48e37037b52",
+              "name": "A JSON array of collocations matching the query.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "change"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "relation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_sig",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pos",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your RapidAPI subscription key.",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be set to `linguatools-collocations.p.rapidapi.com`.",
+                    "key": "X-RapidAPI-Host",
+                    "value": "linguatools-collocations.p.rapidapi.com"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"basis\": \"change\",\n    \"collocate\": \"dramatic\",\n    \"relation\": \"N:mod:Adj\",\n    \"significance\": 1825.4,\n    \"examples\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"basis\": \"change\",\n    \"collocate\": \"dramatic\",\n    \"relation\": \"N:mod:Adj\",\n    \"significance\": 1825.4,\n    \"examples\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4acf64ee-3e1f-4982-bbf4-bae135f21e6b",
+              "name": "Bad request, missing or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "change"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "relation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_sig",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pos",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your RapidAPI subscription key.",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be set to `linguatools-collocations.p.rapidapi.com`.",
+                    "key": "X-RapidAPI-Host",
+                    "value": "linguatools-collocations.p.rapidapi.com"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a09d3962-5539-492a-aa47-1c9df8c5f1d7",
+              "name": "Missing or invalid RapidAPI key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "change"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "relation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_sig",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pos",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your RapidAPI subscription key.",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be set to `linguatools-collocations.p.rapidapi.com`.",
+                    "key": "X-RapidAPI-Host",
+                    "value": "linguatools-collocations.p.rapidapi.com"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d9c4c7c-7371-41cb-8a08-4c0f8da95f08",
+              "name": "Rate limit exceeded for the current plan.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "change"
+                    },
+                    {
+                      "key": "lang",
+                      "value": "en"
+                    },
+                    {
+                      "key": "relation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_sig",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pos",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your RapidAPI subscription key.",
+                    "key": "X-RapidAPI-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Must be set to `linguatools-collocations.p.rapidapi.com`.",
+                    "key": "X-RapidAPI-Host",
+                    "value": "linguatools-collocations.p.rapidapi.com"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://linguatools-collocations.p.rapidapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c61f4f79-db4d-4f30-a0fc-d895e57f4a05",
+    "name": "Linguatools Collocations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Linguatools Collocations API provides access to a dictionary of more than 2 million English collocations. It returns collocations for a query word filtered by syntactic relation, part of speech, and a minimum significance score, with up to three example sentences per collocation. The API is distributed via RapidAPI.\n\nContact Support:\n Name: Linguatools",
+      "type": "text/plain"
+    }
+  }
+}
