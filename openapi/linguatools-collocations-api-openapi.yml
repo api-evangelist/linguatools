@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Linguatools Collocations API
   description: The Linguatools Collocations API provides access to a dictionary of more than 2 million English collocations. It returns collocations for a query word filtered by syntactic relation, part of speech, and a minimum significance score, with up to three example sentences per collocation. The API is distributed via RapidAPI.
